@@ -1,7 +1,7 @@
 import { useTheme } from '@material-tailwind/react'
 import { useEffect } from 'react'
 
-export default function Navbar(props: any) {
+export default function Navbar() {
   const {darkMode, toggleThemeMode} = useTheme();
 
   useEffect(() => {
@@ -44,8 +44,4 @@ export default function Navbar(props: any) {
         </nav>
     </header>
   )
-}
-
-Navbar.defaultProps = {
-    title: "Title",
 }
