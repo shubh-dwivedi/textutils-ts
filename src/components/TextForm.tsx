@@ -78,23 +78,23 @@ export default function TextForm(props: any) {
     <div className='w-full text-center content-center dark:bg-gray-900 dark:text-white'>
         <div className='w-5xl mx-auto container text-center'>
             <h1 className='my-3'>{props.heading}</h1>
-            <div className="mb-3">
+            <div className="mt-9 mb-3">
                 <textarea id="myBox" rows={10} value={text} onChange={handleTextChange} 
                 className="w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 
                 focus:ring-blue-500 focus:outline-blue-400 dark:bg-gray-700 dark:outline-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:outline-gray-500" 
                 placeholder="Write your thoughts here..."></textarea>
             </div>
-            <button disabled={text.length === 0} type='button' className='mx-2 my-1 btn-swap rounded-md bg-blue-600 border-1 border-blue-600 text-white px-1 py-1' onClick={handleUpBtnClick}>Convert to UPPERCASE</button>
-            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 border-1 border-blue-600 text-white px-1 py-1' onClick={handleLowBtnClick}>Convert to lowercase</button>
-            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 border-1 border-blue-600 text-white px-1 py-1' onClick={handleSentenceBtnClick}>Convert to Sentence case</button>
-            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 border-1 border-blue-600 text-white px-1 py-1' onClick={handleRemoveExtraSpaces}>Remove Extra spaces</button>
-            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 border-1 border-blue-600 text-white px-1 py-1' onClick={handleCopy}>Copy text</button>
-            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 border-1 border-blue-600 text-white px-1 py-1' onClick={handleClearBtnClick}>Clear text</button>
+            <button disabled={text.length === 0} type='button' className='mx-2 my-1 btn-swap rounded-md bg-blue-600 hover:bg-blue-800 hover:border-blue-800 border-1 border-blue-600 text-white px-1 py-1' onClick={handleUpBtnClick}>Convert to UPPERCASE</button>
+            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 hover:bg-blue-800 hover:border-blue-800 border-1 border-blue-600 text-white px-1 py-1' onClick={handleLowBtnClick}>Convert to lowercase</button>
+            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 hover:bg-blue-800 hover:border-blue-800 border-1 border-blue-600 text-white px-1 py-1' onClick={handleSentenceBtnClick}>Convert to Sentence case</button>
+            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 hover:bg-blue-800 hover:border-blue-800 border-1 border-blue-600 text-white px-1 py-1' onClick={handleRemoveExtraSpaces}>Remove Extra spaces</button>
+            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 hover:bg-blue-800 hover:border-blue-800 border-1 border-blue-600 text-white px-1 py-1' onClick={handleCopy}>Copy text</button>
+            <button disabled={text.length === 0} className='mx-2 my-1 btn-swap rounded-md bg-blue-600 hover:bg-blue-800 hover:border-blue-800 border-1 border-blue-600 text-white px-1 py-1' onClick={handleClearBtnClick}>Clear text</button>
         </div>
 
         <div className="container">
-            <h2 className='my-3'>Text Summary</h2>
+            <h1 className='mt-6 mb-2 text-xl'>Text Summary</h1>
             <p><b>{handleWordLength()} words</b> and <b>{text.length} characters</b></p>
             <p><b>{(0.008 * (handleWordLength())).toFixed(3)} minutes</b> to read</p>
             <h2>Preview Text</h2>
