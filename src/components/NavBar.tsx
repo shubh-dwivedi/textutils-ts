@@ -17,12 +17,12 @@ export default function Navbar() {
   return (
     <header className="shadow sticky z-50 top-0">
         <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-700 dark:text-white">
-            <div className="flex flex-wrap gap-4 justify-between items-center">
+            <div className="flex max-sm:justify-end gap-4 justify-between items-center">
                 <div className="flex items-start text-2xl font-bold">
                     TextUtils
                 </div>
                 
-                <div className="hidden justify-end items-end w-full lg:flex lg:w-auto"
+                <div className="justify-end items-end w-full lg:w-auto max-sm:flex"
                     id="mobile-menu-2" title={!darkMode ? 'Dark Theme' : 'Light Theme'}>
                     <label className="relative inline-flex items-center cursor-pointer">
                         <input
