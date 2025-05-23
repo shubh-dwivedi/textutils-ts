@@ -1,7 +1,8 @@
-import {useState} from 'react'
+import {useRef, useState} from 'react'
 
 export default function TextForm(props: any) {
     const [text, setText] = useState("");
+    const textRef: any = useRef(null);
     
     const handleUpBtnClick= () => {
         let textUpperCase = text.toUpperCase();
@@ -48,6 +49,7 @@ export default function TextForm(props: any) {
     }
 
     const handleCopy= () => {
+        textRef?.current?.select()
         navigator.clipboard.writeText(text);
     }
 
@@ -57,7 +59,7 @@ export default function TextForm(props: any) {
     }
 
     // function to return text length as 0 if textarea is empty. This also emits the error of extra space or full stops being counted as words.
-    const handleWordLength = () => {
+    const getWordsLength = () => {
         let textToAnalyze = text;
         let wordsArray=textToAnalyze.split(/[\s.,]+/);
         let wordCount=wordsArray.length;   
@@ -72,13 +74,30 @@ export default function TextForm(props: any) {
         }
         return wordCount;
     }
+
+    const getWordsReadingTime = () => {
+        let textToAnalyze = text;
+        let wordsArray=textToAnalyze.split(/[\s.,]+/);
+        let wordCount=wordsArray.length;   
+        if(wordsArray[0] === "") {
+            if(wordCount === 1 || wordsArray[1] === "") {
+                wordCount = 0;
+                return wordCount;
+            } else wordCount--;
+        }
+        if (wordsArray[wordsArray.length-1] === "") {
+            wordCount--
+        }
+        const result = (0.008 * wordCount).toFixed(2);
+        return result;
+    }
     
   return (
     <div className='w-full text-center content-center dark:bg-gray-900 dark:text-white'>
         <div className='w-5xl max-sm:w-fit mx-auto container text-center'>
             <h1 className='my-3'>{props.heading}</h1>
             <div className="mt-9 mb-3">
-                <textarea id="myBox" rows={10} value={text} onChange={(event: any) => setText(event.target.value)} 
+                <textarea id="myBox" rows={10} value={text} ref={textRef} onChange={(event: any) => setText(event.target.value)} 
                 className="w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 
                 focus:ring-blue-500 focus:outline-blue-400 dark:bg-gray-700 dark:outline-gray-600 
                 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:outline-gray-500" 
@@ -96,10 +115,8 @@ export default function TextForm(props: any) {
 
         <div className="container">
             <h1 className='mt-6 mb-2 text-xl'>Text Summary</h1>
-            <p><b>{handleWordLength()} words</b> and <b>{text.length} characters</b></p>
-            <p><b>{(0.008 * (handleWordLength())).toFixed(3)} minutes</b> to read</p>
-            <h2>Preview Text</h2>
-            <p>{(text.length !==0)?text:"Nothing to preview!"}</p>
+            <p><b>{getWordsLength()} words</b> and <b>{text.length} characters</b></p>
+            <p>Approx <b>{getWordsReadingTime()} minutes</b> to read</p>
         </div>
     </div>
   )
